@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AccountCreationPage from '@/views/account/AccountCreationPage.vue'
 import AccountLoginPage from '@/views/account/AccountLoginPage.vue'
+import BoardListPage from '@/views/board/BoardListPage.vue'
+
 
 
 
@@ -31,6 +33,11 @@ const routes = [
     path: '/account-login-page',
     name: 'AccountLoginPage',
     component: AccountLoginPage
+  },
+  {
+    path: '/board-list-page',
+    name: 'BoardListPage',
+    component: BoardListPage
   },
 ]
 

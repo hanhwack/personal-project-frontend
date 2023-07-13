@@ -39,7 +39,7 @@
       <v-navigation-drawer app v-model="navigation_drawer">
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="text-h6">EDDI</v-list-item-title>
+          <v-list-item-title class="text-h6">Travelog</v-list-item-title>
           <v-list-item-subtitle>페이지 기능</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -80,7 +80,7 @@
   },
   methods: {
     clickToggle () {
-      alert('토글')
+      router.push('/board-list-page')
     },
     signUp () {
       router.push('/account-creation-page')
