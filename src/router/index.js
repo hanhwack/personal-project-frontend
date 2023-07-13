@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import AccountCreationPage from '@/views/account/AccountCreationPage.vue'
 import AccountLoginPage from '@/views/account/AccountLoginPage.vue'
 import BoardListPage from '@/views/board/BoardListPage.vue'
+import BoardRegisterPage from '@/views/board/BoardRegisterPage.vue'
 
 
 
@@ -38,6 +39,11 @@ const routes = [
     path: '/board-list-page',
     name: 'BoardListPage',
     component: BoardListPage
+  },
+  {
+    path: '/board-register-page',
+    name: 'BoardRegisterPage',
+    component: BoardRegisterPage
   },
 ]
 
