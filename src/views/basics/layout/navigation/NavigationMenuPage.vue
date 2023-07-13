@@ -4,7 +4,7 @@
            https://vuetifyjs.com/en/components/app-bars/ -->
       <v-app-bar color="blue" app blue>
         <v-app-bar-nav-icon @click="navigation_drawer = !navigation_drawer"/>
-        <v-btn @click="goToHome">
+        <v-btn @click="goToHome" color="red">
         <v-img class="mx-2" src="@/assets/wing.png"
                 max-height="40" max-width="40" contain>
         </v-img>
@@ -83,17 +83,17 @@
       alert('토글')
     },
     signUp () {
-      router.push('/problem-page5')
+      router.push('/account-page')
     },
     signIn () {
-      router.push('/problem-page5')
+      router.push('/account-page')
     },
     signOut () {
       localStorage.removeItem("loginUserInfo")
       this.isLogin = false
     },
     goToHome () {
-      // 자기 참조 형태에서 push()는 오류가 발생하므로 go()로 변경함
+      
       router.push('/')
     }
   },
