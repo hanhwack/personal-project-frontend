@@ -83,10 +83,10 @@
       alert('토글')
     },
     signUp () {
-      router.push('/account-page')
+      router.push('/account-creation-page')
     },
     signIn () {
-      router.push('/account-page')
+      router.push('/account-Login-page')
     },
     signOut () {
       localStorage.removeItem("loginUserInfo")

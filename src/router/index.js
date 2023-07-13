@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import AccountPage from '@/views/account/AccountPage.vue'
+import AccountCreationPage from '@/views/account/AccountCreationPage.vue'
+import AccountLoginPage from '@/views/account/AccountLoginPage.vue'
+
+
 
 Vue.use(VueRouter)
 
@@ -20,9 +23,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
-    path: '/account-page',
-    name: 'AccountPage',
-    component: AccountPage
+    path: '/account-creation-page',
+    name: 'AccountCreationPage',
+    component: AccountCreationPage
+  },
+  {
+    path: '/account-login-page',
+    name: 'AccountLoginPage',
+    component: AccountLoginPage
   },
 ]
 

@@ -1,30 +1,25 @@
 <template>
-    <div class="registration-form">
+    <div class="login-form">
       <v-card class="form-card">
-        <v-card-title class="form-title">회원가입</v-card-title>
+        <v-card-title class="form-title">로그인</v-card-title>
         <v-card-text>
-          <v-form @submit="processCreateAccount">
+          <v-form @submit="processLogin">
             <v-text-field
               v-model="email"
               label="이메일"
               type="email"
               required
+              outlined
             ></v-text-field>
             <v-text-field
               v-model="password"
               label="비밀번호"
               type="password"
               required
+              outlined
             ></v-text-field>
-            <v-text-field v-model="name" label="이름" required></v-text-field>
-            <v-text-field
-              v-model="phoneNumber"
-              label="휴대폰번호"
-              type="tel"
-              required
-            ></v-text-field>
-            <v-btn type="submit" color="blue" class="submit-btn">
-              완료
+            <v-btn type="submit" color="primary" class="submit-btn">
+              로그인
             </v-btn>
           </v-form>
         </v-card-text>
@@ -40,30 +35,24 @@
       return {
         email: '',
         password: '',
-        name: '',
-        phoneNumber: '',
       }
     },
     methods: {
-      processCreateAccount() {
-        const { email, password, name, phoneNumber } = this
+      processLogin() {
+        const { email, password } = this
         axios
-          .post('http://localhost:7777/register', {
-            email,
-            password,
-            name,
-            phoneNumber,
-          })
+          .post('http://localhost:7777/bmp-account/login', { email, password })
           .then((res) => {
-            if (res.data.success) {
-              alert('회원가입이 완료되었습니다!')
+            if (res.data.isSuccessForLogin) {
+              alert('로그인 완료!')
+              localStorage.setItem('loginUserInfo', res.data.gameAccountId)
             } else {
-              alert(res.data.message)
+              alert('로그인 실패!')
             }
           })
           .catch((error) => {
             console.error(error)
-            alert('회원가입 중 오류가 발생했습니다.')
+            alert('로그인 중 오류가 발생했습니다.')
           })
       },
     },
@@ -71,7 +60,7 @@
   </script>
   
   <style scoped>
-  .registration-form {
+  .login-form {
     display: flex;
     justify-content: center;
     align-items: center;
