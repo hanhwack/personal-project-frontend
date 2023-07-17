@@ -6,6 +6,8 @@ import AccountLoginPage from '@/views/account/AccountLoginPage.vue'
 import BoardListPage from '@/views/board/BoardListPage.vue'
 import BoardRegisterPage from '@/views/board/BoardRegisterPage.vue'
 import BoardReadPage from '@/views/board/BoardReadPage.vue'
+import GoogleMapPage from '@/views/map/GoogleMapPage.vue'
+
 
 
 
@@ -50,6 +52,11 @@ const routes = [
     path: '/board-read-page',
     name: 'BoardReadPage',
     component: BoardReadPage
+  },
+  {
+    path: '/google-map-page',
+    name: 'GoogleMapPage',
+    component: GoogleMapPage
   },
 ]
 
