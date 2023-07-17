@@ -5,6 +5,7 @@ import AccountCreationPage from '@/views/account/AccountCreationPage.vue'
 import AccountLoginPage from '@/views/account/AccountLoginPage.vue'
 import BoardListPage from '@/views/board/BoardListPage.vue'
 import BoardRegisterPage from '@/views/board/BoardRegisterPage.vue'
+import BoardReadPage from '@/views/board/BoardReadPage.vue'
 
 
 
@@ -44,6 +45,11 @@ const routes = [
     path: '/board-register-page',
     name: 'BoardRegisterPage',
     component: BoardRegisterPage
+  },
+  {
+    path: '/board-read-page',
+    name: 'BoardReadPage',
+    component: BoardReadPage
   },
 ]
 
