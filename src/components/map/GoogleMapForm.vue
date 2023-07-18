@@ -41,9 +41,10 @@
         const geocoder = new google.maps.Geocoder();
         geocoder.geocode({ address: this.location }, (results, status) => {
           if (status === 'OK' && results[0] && results[0].geometry) {
-            const { location } = results[0].geometry.location;
-            this.map.setCenter(location);
-            this.marker.setPosition(location);
+            const { lat, lng } = results[0].geometry.location;
+            const newLocation = new google.maps.LatLng(lat(), lng());
+            this.map.setCenter(newLocation);
+            this.marker.setPosition(newLocation);
             this.selectedLocation = results[0].formatted_address;
           }
         });
