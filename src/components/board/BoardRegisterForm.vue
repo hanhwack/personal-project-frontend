@@ -1,39 +1,28 @@
 <template>
   <div>
     <form @submit.prevent="onSubmit" class="board-form">
-      <table class="form-table">
-        <tr>
-          <td class="label">제목</td>
-          <td>
-            <input type="text" v-model="title" class="input-field" />
-          </td>
-        </tr>
-        <tr>
-          <td class="label">작성자</td>
-          <td>
-            <input type="text" v-model="writer" class="input-field" />
-          </td>
-        </tr>
-        <tr>
-          <td class="label">본문</td>
-          <td>
-            <textarea cols="80" rows="10" v-model="content" class="input-field"></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td class="label">장소</td>
-          <td>
-            <input type="text" v-model="location" class="input-field" />
-            <button @click="openPopup" class="open-popup-button">페이지 팝업</button>
-          </td>
-        </tr>
-      </table>
-
+      <div class="form-row">
+        <label for="title-input" class="label">제목</label>
+        <input id="title-input" type="text" v-model="title" class="input-field" />
+      </div>
+      <div class="form-row">
+        <label for="writer-input" class="label">작성자</label>
+        <input id="writer-input" type="text" v-model="writer" class="input-field" />
+      </div>
+      <div class="form-row">
+        <label for="content-input" class="label">본문</label>
+        <textarea id="content-input" rows="5" v-model="content" class="input-field"></textarea>
+      </div>
+      <div class="form-row">
+        <label for="location-input" class="label">장소</label>
+        <div class="input-button-container">
+          <input type="text" v-model="location" class="google-search-input" placeholder="장소를 검색하세요" />
+          <button @click="openMapPopup" class="open-popup-button">지도 선택</button>
+        </div>
+      </div>
       <div class="form-actions">
         <button type="submit" class="submit-button">등록</button>
-        <router-link :to="{ name: 'BoardListPage' }" class="cancel-link">
-          취소
-        </router-link>
+        <router-link :to="{ name: 'BoardListPage' }" class="cancel-link">취소</router-link>
       </div>
     </form>
   </div>
@@ -43,9 +32,9 @@
 export default {
   data() {
     return {
-      title: '제목을 입력하세요',
-      writer: '누구?',
-      content: '본문을 입력하세요',
+      title: '',
+      writer: '',
+      content: '',
       location: '',
     };
   },
@@ -53,8 +42,8 @@ export default {
     onSubmit() {
       // 폼 제출 로직
     },
-    openPopup() {
-      const popupUrl = '/google-map-page'; // 팝업창으로 불러올 페이지 URL
+    openMapPopup() {
+      const popupUrl = '/google-map-page';
       const popupWindow = window.open(popupUrl, '_blank', 'width=500,height=500');
     },
   },
@@ -66,8 +55,7 @@ export default {
   margin: 10px;
 }
 
-.form-table {
-  width: 100%;
+.form-row {
   margin-bottom: 20px;
 }
 
@@ -79,19 +67,39 @@ export default {
 
 .input-field {
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-.form-actions {
-  margin-top: 10px;
+.google-search-input {
+  flex: 1;
+  padding-right: 5px;
+}
+
+.input-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.open-popup-button {
+  background-color: #ffc107;
+  color: #000;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.open-popup-button:hover {
+  background-color: #ffa000;
 }
 
 .submit-button {
   background-color: #007bff;
   color: #fff;
-  padding: 8px 16px;
+  padding: 10px 16px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -102,14 +110,5 @@ export default {
   color: #007bff;
   text-decoration: none;
   font-weight: bold;
-}
-
-.open-popup-button {
-  background-color: #ffc107;
-  color: #000;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
 </style>
