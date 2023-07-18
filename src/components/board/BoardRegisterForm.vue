@@ -6,25 +6,25 @@
         <input id="title-input" type="text" v-model="title" class="input-field" />
       </div>
       <div class="form-row">
-        <label for="writer-input" class="label">작성자</label>
-        <input id="writer-input" type="text" v-model="writer" class="input-field" />
-      </div>
-      <div class="form-row">
         <label for="content-input" class="label">본문</label>
         <textarea id="content-input" rows="5" v-model="content" class="input-field"></textarea>
       </div>
       <div class="form-row">
-        <label for="location-input" class="label">장소</label>
-        <div class="input-button-container">
-          <input type="text" v-model="location" class="google-search-input" placeholder="장소를 검색하세요" />
-          <button @click="openMapPopup" class="open-popup-button">지도 선택</button>
-        </div>
+        <button @click="openMapPopup" class="open-popup-button">지도 추가</button>
+      </div>
+      <div class="form-row">
+        <h4>사용자: {{ userId }}</h4>
       </div>
       <div class="form-actions">
         <button type="submit" class="submit-button">등록</button>
         <router-link :to="{ name: 'BoardListPage' }" class="cancel-link">취소</router-link>
       </div>
     </form>
+
+    <div v-if="selectedLocation" class="selected-location">
+      <h3>선택한 장소</h3>
+      <div id="selected-map"></div>
+    </div>
   </div>
 </template>
 
@@ -33,19 +33,61 @@ export default {
   data() {
     return {
       title: '',
-      writer: '',
       content: '',
-      location: '',
+      selectedLocation: '',
+      map: null,
+      marker: null,
+      userId: '사용자 아이디', // 사용자 아이디 변수 (변경 필요)
     };
   },
   methods: {
     onSubmit() {
       // 폼 제출 로직
+      const formData = {
+        title: this.title,
+        content: this.content,
+        location: this.selectedLocation,
+      };
+      console.log(formData); // 등록 폼 데이터 확인
+
+      // 등록 로직 추가
     },
     openMapPopup() {
       const popupUrl = '/google-map-page';
-      const popupWindow = window.open(popupUrl, '_blank', 'width=500,height=500');
+      const popupWindow = window.open(popupUrl, '_blank', 'width=1000,height=750');
     },
+    initializeMap() {
+      const mapContainer = document.getElementById('selected-map');
+      const mapOptions = {
+        center: { lat: 37.5665, lng: 126.9780 },
+        zoom: 13,
+      };
+      this.map = new google.maps.Map(mapContainer, mapOptions);
+      this.marker = new google.maps.Marker({
+        position: mapOptions.center,
+        map: this.map,
+        draggable: true,
+      });
+    },
+    updateMapLocation(location) {
+      if (location) {
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ address: location }, (results, status) => {
+          if (status === 'OK' && results[0] && results[0].geometry) {
+            const { lat, lng } = results[0].geometry.location;
+            const newLocation = new google.maps.LatLng(lat(), lng());
+            this.map.setCenter(newLocation);
+            this.marker.setPosition(newLocation);
+            this.selectedLocation = results[0].formatted_address;
+          }
+        });
+      } else {
+        this.selectedLocation = '';
+      }
+    },
+  },
+  mounted() {
+    this.initializeMap();
   },
 };
 </script>
@@ -70,16 +112,6 @@ export default {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
-
-.google-search-input {
-  flex: 1;
-  padding-right: 5px;
-}
-
-.input-button-container {
-  display: flex;
-  align-items: center;
 }
 
 .open-popup-button {
@@ -110,5 +142,14 @@ export default {
   color: #007bff;
   text-decoration: none;
   font-weight: bold;
+}
+
+.selected-location {
+  margin-top: 20px;
+}
+
+#selected-map {
+  width: 100%;
+  height: 400px;
 }
 </style>

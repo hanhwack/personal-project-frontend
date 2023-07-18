@@ -19,6 +19,7 @@
     <button @click="onSubmit" class="submit-button">등록</button>
   </div>
 </template>
+
 <script>
 export default {
   data() {
@@ -98,6 +99,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 .full-screen {
   position: fixed;
