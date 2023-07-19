@@ -8,19 +8,15 @@
       </v-btn>
       <v-spacer></v-spacer>
       <v-btn text @click="clickToggle" class="white--text">
-        <v-icon left>mdi-hand-back-left-outline</v-icon>
         <span>게시판</span>
       </v-btn>
       <v-btn v-if="!isLogin" text @click="signUp" class="white--text">
-        <v-icon left>mdi-account-plus-outline</v-icon>
         <span>회원가입</span>
       </v-btn>
       <v-btn v-if="!isLogin" text @click="signIn" class="white--text">
-        <v-icon left>mdi-login</v-icon>
         <span>로그인</span>
       </v-btn>
       <v-btn v-if="isLogin" text @click="signOut" class="white--text">
-        <v-icon left>mdi-exit-to-app</v-icon>
         <span>로그아웃</span>
       </v-btn>
     </v-app-bar>

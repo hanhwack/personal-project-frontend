@@ -48,7 +48,7 @@
       processCreateAccount() {
         const { email, password, name, phoneNumber } = this
         axios
-          .post('http://localhost:7777/register', {
+          .post('http://localhost:7777/account-page/register', {
             email,
             password,
             name,
