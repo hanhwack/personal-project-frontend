@@ -1,13 +1,13 @@
-<template>
+<template lang="">
   <div>
     <h3 class="title">게시물 목록</h3>
     <table class="board-table">
       <thead>
         <tr>
-          <th class="column-header" align="center" width="6%">번호</th>
-          <th class="column-header" align="center" width="70%">제목</th>
-          <th class="column-header" align="center" width="10%">작성자</th>
-          <th class="column-header" align="center" width="14%">등록일자</th>
+          <th class="column-header">번호</th>
+          <th class="column-header">제목</th>
+          <th class="column-header">작성자</th>
+          <th class="column-header">등록일자</th>
         </tr>
       </thead>
       <tbody>
@@ -17,16 +17,16 @@
           </td>
         </tr>
         <tr v-else v-for="board in boards" :key="board.boardId">
-          <td class="column-data" align="center">{{ board.boardId }}</td>
-          <td class="column-data" align="center">
+          <td class="column-data">{{ board.boardId }}</td>
+          <td class="column-data">
             <router-link
               :to="{ name: 'BoardReadPage', params: { boardId: board.boardId.toString() }}"
             >
               {{ board.title }}
             </router-link>
           </td>
-          <td class="column-data" align="center">{{ board.writer }}</td>
-          <td class="column-data" align="center">{{ board.createDate }}</td>
+          <td class="column-data">{{ board.writer }}</td>
+          <td class="column-data">{{ board.createDate }}</td>
         </tr>
       </tbody>
     </table>
@@ -37,9 +37,9 @@
 export default {
   props: {
     boards: {
-      type: Array,
-    },
-  },
+      type: Array
+    }
+  }
 };
 </script>
 
