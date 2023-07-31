@@ -29,25 +29,28 @@ export default {
 </script>
 
 <style lang="css">
-.board-register-button {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-}
+    .board-register-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+    }
 
-.board-register-button a {
-  display: inline-block;
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-  font-weight: bold;
-}
+    /* .board-register-button 내부의 a 태그에 대한 스타일 수정 */
+    .board-register-button a {
+      display: inline-block;
+      background-color: #007bff;
+      color: #fff; /* 흰색으로 변경 */
+      padding: 10px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-.board-register-button a:hover {
-  background-color: #0056b3;
-}
+    .board-register-button a:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</template>
 </style>

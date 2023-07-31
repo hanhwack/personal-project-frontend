@@ -12,9 +12,6 @@
       <div class="form-row">
         <button @click="openMapPopup" class="open-popup-button">지도 추가</button>
       </div>
-      <div class="form-row">
-        <h4>사용자: {{ userId }}</h4>
-      </div>
       <div class="form-actions">
         <button type="submit" class="submit-button">등록</button>
         <router-link :to="{ name: 'BoardListPage' }" class="cancel-link">취소</router-link>
