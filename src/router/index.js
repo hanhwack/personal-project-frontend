@@ -2,13 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 
-import BoardListPage from '@/views/board/BoardListPage.vue'
-import BoardRegisterPage from '@/views/board/BoardRegisterPage.vue'
-import BoardReadPage from '@/views/board/BoardReadPage.vue'
+
 import GoogleMapPage from '@/views/map/GoogleMapPage.vue'
 
 import accountRoutes from "./account";
 import defaultSetRoutes from "./defaultRouterSet";
+import boardRoutes from "./board";
 
 
 
@@ -18,23 +17,10 @@ Vue.use(VueRouter)
 
 const routes = [
   ...defaultSetRoutes,
-  ...accountRoutes,  
+  ...accountRoutes, 
+  ...boardRoutes, 
   
-  {
-    path: '/board-list-page',
-    name: 'BoardListPage',
-    component: BoardListPage
-  },
-  {
-    path: '/board-register-page',
-    name: 'BoardRegisterPage',
-    component: BoardRegisterPage
-  },
-  {
-    path: '/board-read-page',
-    name: 'BoardReadPage',
-    component: BoardReadPage
-  },
+  
   {
     path: '/google-map-page',
     name: 'GoogleMapPage',
