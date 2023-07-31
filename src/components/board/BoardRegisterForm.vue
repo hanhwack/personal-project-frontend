@@ -21,75 +21,30 @@
       </div>
     </form>
 
-    <div v-if="selectedLocation" class="selected-location">
-      <h3>선택한 장소</h3>
-      <div id="selected-map"></div>
-    </div>
+<div v-if="selectedLocation" class="selected-location">
+  <h3>선택한 장소</h3>
+  <div id="selected-map"></div>
+</div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      title: '',
-      content: '',
-      selectedLocation: '',
-      map: null,
-      marker: null,
-      userId: '사용자 아이디', // 사용자 아이디 변수 (변경 필요)
-    };
-  },
-  methods: {
-    onSubmit() {
-      // 폼 제출 로직
-      const formData = {
-        title: this.title,
-        content: this.content,
-        location: this.selectedLocation,
-      };
-      console.log(formData); // 등록 폼 데이터 확인
-
-      // 등록 로직 추가
+    data () {
+        return {
+            title: '제목을 입력하세요',
+            writer: '누구세요 ?',
+            content: '본문을 입력하세요',
+        }
     },
-    openMapPopup() {
-      const popupUrl = '/google-map-page';
-      const popupWindow = window.open(popupUrl, '_blank', 'width=1000,height=750');
-    },
-    initializeMap() {
-      const mapContainer = document.getElementById('selected-map');
-      const mapOptions = {
-        center: { lat: 37.5665, lng: 126.9780 },
-        zoom: 13,
-      };
-      this.map = new google.maps.Map(mapContainer, mapOptions);
-      this.marker = new google.maps.Marker({
-        position: mapOptions.center,
-        map: this.map,
-        draggable: true,
-      });
-    },
-    updateMapLocation(location) {
-      if (location) {
-        const geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ address: location }, (results, status) => {
-          if (status === 'OK' && results[0] && results[0].geometry) {
-            const { lat, lng } = results[0].geometry.location;
-            const newLocation = new google.maps.LatLng(lat(), lng());
-            this.map.setCenter(newLocation);
-            this.marker.setPosition(newLocation);
-            this.selectedLocation = results[0].formatted_address;
-          }
-        });
-      } else {
-        this.selectedLocation = '';
-      }
-    },
-  },
-  mounted() {
-    this.initializeMap();
-  },
-};
+    methods: {
+        onSubmit () {
+            const { title, writer, content } = this
+            // BoardRegisterPage의 @submit은 여기의 submit에 대응함
+            this.$emit('submit', { title, writer, content })
+        }
+    }
+}
 </script>
 
 <style scoped>
@@ -152,5 +107,4 @@ export default {
   width: 100%;
   height: 400px;
 }
-
 </style>
