@@ -16,13 +16,6 @@
               type="password"
               required
             ></v-text-field>
-            <v-text-field v-model="name" label="이름" required></v-text-field>
-            <v-text-field
-              v-model="phoneNumber"
-              label="휴대폰번호"
-              type="tel"
-              required
-            ></v-text-field>
             <v-btn type="submit" color="blue" class="submit-btn">
               완료
             </v-btn>
@@ -40,19 +33,15 @@
       return {
         email: '',
         password: '',
-        name: '',
-        phoneNumber: '',
       }
     },
     methods: {
       processCreateAccount() {
-        const { email, password, name, phoneNumber } = this
+        const { email, password} = this
         axios
-          .post('http://localhost:7777/register', {
+          .post('http://localhost:7777/account/register', {
             email,
             password,
-            name,
-            phoneNumber,
           })
           .then((res) => {
             if (res.data.success) {

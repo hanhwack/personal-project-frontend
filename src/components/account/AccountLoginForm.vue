@@ -43,7 +43,7 @@
       processLogin() {
         const { email, password } = this
         axios
-          .post('http://localhost:7777/bmp-account/login', { email, password })
+          .post('http://localhost:7777/account-page/login', { email, password })
           .then((res) => {
             if (res.data.isSuccessForLogin) {
               alert('로그인 완료!')
