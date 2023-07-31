@@ -33,7 +33,8 @@
     "vue-loader": "^17.2.2",
     "vue-style-loader": "^4.1.3",
     "vue-template-compiler": "^2.6.14",
-    "vuetify-loader": "^1.7.0"
+    "vuetify-loader": "^1.7.0",
+    "vuex-class": "^0.3.2"
   },
   "eslintConfig": {
     "root": true,
